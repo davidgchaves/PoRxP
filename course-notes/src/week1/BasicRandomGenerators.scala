@@ -23,4 +23,9 @@ object BasicRandomGenerators {
 
   randomIntegers.generate
 
+  // A Random Generator for Booleans
+  val randomBooleans = for (x <- randomIntegers) yield x > 0
+
+  randomBooleans.generate
+
 }
