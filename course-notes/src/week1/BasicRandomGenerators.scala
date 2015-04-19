@@ -16,4 +16,11 @@ object BasicRandomGenerators {
     }
   }
 
+  // A Random Generator for Integers
+  val randomIntegers = new Generator[Int] {
+    def generate = scala.util.Random.nextInt()
+  }
+
+  randomIntegers.generate
+
 }
