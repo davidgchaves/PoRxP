@@ -36,4 +36,11 @@ object BasicRandomGenerators {
 
   randomPairs(randomIntegers,randomIntegers).generate
 
+  // Some building blocks for Generators
+  def unit[T](x: T): Generator[T] = new Generator[T] {
+    def generate = x
+  }
+
+  unit(3).generate
+
 }
