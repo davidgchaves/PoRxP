@@ -43,4 +43,19 @@ object BasicRandomGenerators {
 
   unit(3).generate
 
+  // A Random Generator for Lists of Integers: A list is either an empty list or a non-empty list
+  def randomLists: Generator[List[Int]] = for {
+    isEmpty <- randomBooleans
+    list    <- if (isEmpty) emptyLists else nonEmptyLists
+  } yield list
+
+  def emptyLists = unit(Nil)
+
+  def nonEmptyLists = for {
+    head <- randomIntegers
+    tail <- randomLists
+  } yield head :: tail
+
+  randomLists.generate
+
 }
