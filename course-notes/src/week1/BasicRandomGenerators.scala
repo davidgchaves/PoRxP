@@ -65,4 +65,27 @@ object BasicRandomGenerators {
 
   randomLists.generate
 
+  // A Random Generator for Trees of Integers: A tree is either a leaf or an inner node
+
+  // The Tree 'type'
+  trait Tree
+  case class Inner(left: Tree, right: Tree) extends Tree
+  case class Leaf(x: Int) extends Tree
+
+  def randomTrees: Generator[Tree] = for {
+    isLeaf <- randomBooleans
+    tree   <- if (isLeaf) randomLeafs else randomInners
+  } yield tree
+
+  def randomLeafs: Generator[Leaf] = for {
+    x <- randomIntegers
+  } yield Leaf(x)
+
+  def randomInners: Generator[Inner] = for {
+    left  <- randomTrees
+    right <- randomTrees
+  } yield Inner(left,right)
+
+  randomTrees.generate
+
 }
