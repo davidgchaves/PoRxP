@@ -82,6 +82,10 @@ object Monads {
             z = x + y
       } yield z
 
+
+  MONADS WITH ZERO
+
+    Monads that also define a withFilter function
   */
 
 }
