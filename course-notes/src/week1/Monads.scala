@@ -35,6 +35,14 @@ object Monads {
 
     NOTE: Usually flatMap is called bind
 
+
+  EXAMPLES OF MONADS IN SCALA
+
+    - List      is a Monad with unit(x) = List(x)
+    - Set       is a Monad with unit(x) = Set(x)
+    - Option    is a Monad with unit(x) = Some(x)
+    - Generator is a Monad with unit(x) = single(x)
+
   */
 
 }
