@@ -9,5 +9,14 @@ package week1
 object Monads {
   println("Welcome to the Monads' Notes")
 
+  /*
+  MONADS
+
+    A Monad M is a parametric type M[T] with
+      - 2 operations
+      - 3 laws
+
+  */
+
 }
 
