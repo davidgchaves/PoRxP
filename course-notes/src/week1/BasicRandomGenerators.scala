@@ -9,6 +9,11 @@ object BasicRandomGenerators {
 
     def generate: T
 
+    //NOTE: The random boolean generator needs foreach to work properly
+    def foreach[U](f: T => U) {
+      f(generate)
+    }
+
     def map[S](f:T => S): Generator[S] = new Generator[S] {
       def generate = f(self.generate)
     }
