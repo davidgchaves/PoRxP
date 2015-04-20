@@ -50,11 +50,14 @@ object BasicRandomGenerators {
   randomPairs(randomIntegers,randomIntegers).generate
 
   // Some building blocks for Generators
-  def unit[T](x: T): Generator[T] = new Generator[T] {
+  // Decided to go with single(x) instead of unit(x),
+  // since unit(x) is used in Scala as the generic name of the return function on Monads.
+  // So single(x) is the actual unit(x) for Generators as Monads.
+  def single[T](x: T): Generator[T] = new Generator[T] {
     def generate = x
   }
 
-  unit(3).generate
+  single(3).generate
 
   // A Random Generator for Lists of Integers: A list is either an empty list or a non-empty list
   def randomLists: Generator[List[Int]] = for {
@@ -62,7 +65,7 @@ object BasicRandomGenerators {
     list    <- if (isEmpty) emptyLists else nonEmptyLists
   } yield list
 
-  def emptyLists = unit(Nil)
+  def emptyLists = single(Nil)
 
   def nonEmptyLists = for {
     head <- randomIntegers
