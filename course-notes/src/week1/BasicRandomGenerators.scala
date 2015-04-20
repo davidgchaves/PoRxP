@@ -1,3 +1,9 @@
+/*
+  Instructions to convert this file into a Worksheet file:
+    1: Change file extension from .scala to .sc
+    2: Change object name to something else
+       (like BasicRandomGeneratorsWorksheet)
+*/
 package week1
 
 object BasicRandomGenerators {
