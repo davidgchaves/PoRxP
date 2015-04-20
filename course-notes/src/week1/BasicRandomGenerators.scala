@@ -36,9 +36,9 @@ object BasicRandomGenerators {
   randomBooleans.generate
 
   // A Random Generator for Pairs
-  def randomPairs[T,U](t: Generator[T], u: Generator[U]) = for {
-    x <- randomIntegers
-    y <- randomIntegers
+  def randomPairs[T,U](t: Generator[T], u: Generator[U]): Generator[(T,U)] = for {
+    x <- t
+    y <- u
   } yield (x,y)
 
   randomPairs(randomIntegers,randomIntegers).generate
