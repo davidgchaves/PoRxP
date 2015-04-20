@@ -52,6 +52,18 @@ object Monads {
     or using the andThen combinator (allows function composition in Scala):
       m map f == m flatMap (f andThen unit)
 
+
+  MONAD LAWS
+
+    Associativity:
+      m flatMap f flatMap g == m flatMap (x => f(x) flatMap g)
+
+    Left unit:
+      unit(x) flatMap f == f(x)
+
+    Right unit:
+      m flatMap unit == m
+
   */
 
 }
