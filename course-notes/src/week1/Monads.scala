@@ -43,6 +43,15 @@ object Monads {
     - Option    is a Monad with unit(x) = Some(x)
     - Generator is a Monad with unit(x) = single(x)
 
+
+  MONADS AND MAP
+
+    map can be defined in terms of flatMap and unit:
+      m map f == m flatMap (x => unit(f(x)))
+
+    or using the andThen combinator (allows function composition in Scala):
+      m map f == m flatMap (f andThen unit)
+
   */
 
 }
