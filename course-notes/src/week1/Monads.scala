@@ -64,6 +64,24 @@ object Monads {
     Right unit:
       m flatMap unit == m
 
+
+  SCALA'S FOR-COMPREHENSIONS vs HASKELL'S DO-NOTATION
+
+    Scala's 'for comprehensions' are equivalent to Haskell's 'do' notation,
+    and it is nothing more than a syntactic sugar for composition of multiple monadic operations.
+
+    In Haskell we have do-notation for Monads:
+      do x <- [1, 2, 3]
+         y <- [4, 5, 6]
+         let z = (x + y)
+         return z
+
+    In Scala we have for-comprehensions for Monads:
+      for { x <- List(1, 2, 3)
+            y <- List(4, 5, 6)
+            z = x + y
+      } yield z
+
   */
 
 }
