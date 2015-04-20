@@ -88,4 +88,23 @@ object BasicRandomGenerators {
 
   randomTrees.generate
 
+  // A Random Generator for Tests: Very Basic ScalaCheck-like implementation
+  def randomTests[T](inputValues: Generator[T], numberOfTimes: Int = 100)(test: T => Boolean): Unit = {
+    for (_ <- 0 until numberOfTimes) {
+      val inputValue = inputValues.generate
+      assert(test(inputValue), "test failed for " + inputValue)
+    }
+    println("passed " + numberOfTimes + " tests")
+  }
+
+  // PASS
+  randomTests(randomPairs(randomLists, randomLists)) {
+    case (xs,ys) => (xs ++ ys).length >= xs.length
+  }
+
+  // FAILS
+  randomTests(randomPairs(randomLists, randomLists)) {
+    case (xs,ys) => (xs ++ ys).length > xs.length
+  }
+
 }
