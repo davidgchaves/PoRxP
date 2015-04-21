@@ -65,5 +65,9 @@ abstract class QuickCheckHeap extends Properties("Heap") with IntHeap {
 
   //  4: Finding a minimum of the melding of any two heaps
   //     should return a minimum of one or the other.
+  property("minimum of 2 melded heaps") = forAll { (h1: H, h2: H) =>
+    val meldedHeap = meld(h1,h2)
+    findMin(meldedHeap) == Math.min(findMin(h1), findMin(h2))
+  }
 
 }
