@@ -45,7 +45,11 @@ abstract class QuickCheckHeap extends Properties("Heap") with IntHeap {
   //  2: If you insert an element into an empty heap,
   //     then delete the minimum,
   //     the resulting heap should be empty.
-  //
+  property("insert and delete minimum") = forAll { a: Int =>
+    val h1 = insert(a, empty)
+    deleteMin(h1) == empty
+  }
+
   //  3: Given any heap, you should get a sorted sequence of elements
   //     when continually finding and deleting minima. (Hint: recursion and helper functions are your friends.)
   //
