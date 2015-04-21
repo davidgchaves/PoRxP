@@ -51,8 +51,18 @@ abstract class QuickCheckHeap extends Properties("Heap") with IntHeap {
   }
 
   //  3: Given any heap, you should get a sorted sequence of elements
-  //     when continually finding and deleting minima. (Hint: recursion and helper functions are your friends.)
-  //
+  //     when continually finding and deleting minima.
+  //     Hint: recursion and helper functions are your friends.
+  property("sequence of deleted elements") = forAll { h: H =>
+    val deletedElems = seqOfDeleteMinElems(h, Nil)
+    deletedElems == deletedElems.sorted
+  }
+
+  def seqOfDeleteMinElems(heap: H, delElemsAcc: List[A]): List[A] = isEmpty(heap) match {
+    case true  => delElemsAcc
+    case false => findMin(heap) :: seqOfDeleteMinElems(deleteMin(heap), delElemsAcc)
+  }
+
   //  4: Finding a minimum of the melding of any two heaps
   //     should return a minimum of one or the other.
 
