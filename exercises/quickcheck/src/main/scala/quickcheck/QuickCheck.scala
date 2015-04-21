@@ -70,4 +70,22 @@ abstract class QuickCheckHeap extends Properties("Heap") with IntHeap {
     findMin(meldedHeap) == Math.min(findMin(h1), findMin(h2))
   }
 
+  // The melding of any two heaps should return the same result
+  // when the two heaps have in conjunction the same elements
+  // meld1 --> h1 plus h2
+  // meld2 --> h1PlusOneFromH2 plus h2WithoutOne
+  // meld1 == meld2
+  property("2 melds with same elements but different heaps") = forAll { (h1: H, h2: H) =>
+    val meldedHeap1 = meld(h1, h2)
+
+    val h1PlusMinH2 = insert(findMin(h2),h1)
+    val h2MinusMinH2 = deleteMin(h2)
+    val meldedHeap2 = meld(h1PlusMinH2,h2MinusMinH2)
+
+    val deletedElemsMeld1 = seqOfDeleteMinElems(meldedHeap1, Nil)
+    val deletedElemsMeld2 = seqOfDeleteMinElems(meldedHeap2, Nil)
+
+    deletedElemsMeld1 == deletedElemsMeld2
+  }
+
 }
